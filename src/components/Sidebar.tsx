@@ -8,7 +8,7 @@ import { Link } from "react-router-dom"
 
 
 
-const sidebar = () => {
+const Sidebar = () => {
   return (
     <div className='fixed left-0 top-0 m-4  bg-gray-700 rounded-lg max-h-screen w-64 h-175 p-4 flex flex-col'>
       {/* Header */}
@@ -57,4 +57,4 @@ const sidebar = () => {
   )
 }
 
-export default sidebar
+export default Sidebar
