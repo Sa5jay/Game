@@ -1,7 +1,9 @@
-import { FaHome, FaHeart, FaFolderOpen, FaTag, FaStore    } from "react-icons/fa";
+import { FaHome, FaHeart,  FaTag, FaStore    } from "react-icons/fa";
 import { SiPlatformdotsh } from "react-icons/si";
 import { RiComputerFill } from "react-icons/ri";
 import { Link } from "react-router-dom"
+
+
 
 
 
