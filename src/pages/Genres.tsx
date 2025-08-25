@@ -1,10 +1,11 @@
-import GenresCard from '@/components/Cards/GenresCard';
+import Card from '@/components/Cards/Card';
 import Sidebar from '@/components/Sidebar'
 import React, { useState } from 'react'
 interface Props{
   id: number;
   name: string;
   image_background: string;
+  slug: string;
 }
 
 const Genres = () => {
@@ -32,7 +33,7 @@ const Genres = () => {
           </h1>
           <div className='flex flex-wrap gap-4'>
             {genres.map((genre) => (
-            <GenresCard key={genre.id} title={genre.name}  image={genre.image_background}/>
+            <Card key={genre.id} title={genre.name} type='genres' slug={genre.slug} image={genre.image_background}/>
           ))}
           </div>
           

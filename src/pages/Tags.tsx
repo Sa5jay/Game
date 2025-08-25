@@ -1,11 +1,12 @@
 import Sidebar from "@/components/Sidebar"
-import TagsCard from "@/components/Cards/TagsCard"
 import React from "react"
+import Card from "@/components/Cards/Card";
 
 interface Props{
   id: number;
   name: string;
   image_background: string;
+  slug: string;
 }
 
 
@@ -58,7 +59,7 @@ const Tags = () => {
           </h1>
           <div className='flex flex-wrap gap-4'>
             {tags.map((tag) => (
-            <TagsCard key={tag.id} title={tag.name}  image={tag.image_background}/>
+            <Card key={tag.id} title={tag.name} type="tags" slug={tag.slug}  image={tag.image_background}/>
           ))}
           </div>
           {loading && <p className='text-2xl text-amber-200 font-bold text-center mt-6'>Loading...</p>}

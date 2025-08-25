@@ -43,7 +43,7 @@ const Home = () => {
       </div>
       
 
-      <div className="col-span-12 2xl:col-span-10 ml-0 2xl:ml-4">
+      <div className="2xl:col-span-10 ml-0 2xl:ml-4">
         
         <div className="w-full flex items-center justify-between ">
           <Searchbar />

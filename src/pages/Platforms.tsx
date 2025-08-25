@@ -1,6 +1,6 @@
 import Sidebar from "@/components/Sidebar"
-import PlatformCard from "@/components/Cards/PlatformCard"
 import React, { useState } from 'react'
+import Card from "@/components/Cards/Card";
 
 interface Props{
   id: number;
@@ -31,7 +31,7 @@ const Platforms = () => {
           <h1 className="text-amber-200 text-5xl mb-4 font-bold">Platforms</h1>
           <div  className='flex flex-wrap  gap-4'>
             {platforms.map((platform) => (    
-            <PlatformCard key={platform.id}  title={platform.name}  image={platform.image_background}/> 
+            <Card slug={platform.id}  title={platform.name} type="platforms"  image={platform.image_background}/> 
           ))}
           </div>
         </div>

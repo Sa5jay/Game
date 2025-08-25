@@ -1,4 +1,4 @@
-import Card from "./Cards/Card"
+import GameCard from "./Cards/GameCard"
 
 interface Props {
   background_image:string;
@@ -34,8 +34,8 @@ const Body = ({ onMainClick, allgames }: BodyProps) => {
       </div>
       <div className="flex flex-wrap justify-center mt-2 gap-3">
         {allgames.map((game) => (
-            <Card
-            key={game.id}   // 👈 important! ensures re-render
+            <GameCard
+            key={game.id}   
             title={game.name}
             bgImage={game.background_image}
           />

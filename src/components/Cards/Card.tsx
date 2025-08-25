@@ -1,26 +1,29 @@
-
+import { Link } from 'react-router-dom';
 
 interface Props {
-  bgImage: string;
   title: string;
+  image: string;
+  slug: string | number;   // slug for tags/genres, id for platforms/stores
+  type: "tags" | "genres" | "platforms" | "stores"; // NEW
 }
 
-const Card = ({bgImage,title}:Props) => {
+const Card = ({ title, image, slug, type }: Props) => {
   return (
-      <div className="bg-gray-700 w-[290px] h-[300px] shadwo-lg hover:shadow-amber-200 overflow-hidden mt-1 rounded-xl  shadow-lg">
-        <img
-          src={bgImage}
-          alt="Preview"
-          className="w-full   h-50"
-        />
-        <div className="p-2">
-            <h1 className="text-white font-bold ">{title}</h1>
-          <p className="text-gray-400">Description of the game</p>
+    <Link to={`/${type}/${slug}`}>
+      <div 
+        className="relative hover:scale-95 hover:shadow-amber-200 transform transition-transform duration-200 h-[230px] w-[280px] text-gray-50 rounded-lg shadow-lg overflow-hidden"
+        style={{
+          backgroundImage: `url(${image})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="absolute inset-0 bg-black/80 flex flex-col justify-center items-center p-4">
+          <h2 className="text-2xl font-bold">{title}</h2>
         </div>
-        
       </div>
-    
-  )
-}
+    </Link>
+  );
+};
 
-export default Card
+export default Card;

@@ -1,6 +1,6 @@
 import Sidebar from '@/components/Sidebar'
 import React from 'react'
-import StoreCard from '@/components/Cards/StoreCard'
+import Card from '@/components/Cards/Card'
 
 interface Props {
   id: number;
@@ -33,7 +33,7 @@ const Stores = () => {
             </h1>
             <div className='flex flex-wrap gap-4'>
               {stores.map((store) => (    
-            <StoreCard key={store.id}  title={store.name}  image={store.image_background}/> 
+            <Card slug={store.id}  title={store.name} type='stores'  image={store.image_background}/> 
           ))}
             </div>
         </div>
