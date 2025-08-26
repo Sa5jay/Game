@@ -6,6 +6,7 @@ interface Props{
   id: number;
   name: string;
   image_background: string;
+  slug: string;
 }
 
 
@@ -31,7 +32,7 @@ const Platforms = () => {
           <h1 className="text-amber-200 text-5xl mb-4 font-bold">Platforms</h1>
           <div  className='flex flex-wrap  gap-4'>
             {platforms.map((platform) => (    
-            <Card slug={platform.id}  title={platform.name} type="platforms"  image={platform.image_background}/> 
+            <Card slug={platform.id}  title={platform.name}  type="platforms"  image={platform.image_background}/> 
           ))}
           </div>
         </div>

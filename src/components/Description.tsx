@@ -68,15 +68,16 @@ const Description = () => {
       <div className="2xl:col-span-10">
         {details && (
           <div style={{ backgroundImage: `url(${details.image_background} )` }} className="bg-cover  bg-center rounded-lg  mb-6 shadow-lg" >
-            <div className="inset-0 overflow-hidden rounded-lg bg-black/70 p-6">
-              <h1 className="text-4xl   font-bold  text-amber-200 mb-2">
+            <div className="inset-0 overflow-hidden rounded-lg bg-black/80 p-6">
+              <h1 className="text-5xl   font-bold  text-amber-200 mb-2">
               {details.name}
             </h1>
-            <p className="text-white mb-4">{details.description.replace(/<[^>]+>/g, '')}</p>
+            <p className="text-white text-lg mb-4">{details.description.replace(/<[^>]+>/g, '')}</p>
             </div>
             
           </div>
         )}
+        <h1 className="text-white mb-3 font-bold text-3xl">Related games :</h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-2">
           {games.map((game) => (

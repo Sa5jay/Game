@@ -2,6 +2,7 @@ import Sidebar from "@/components/Sidebar"
 import React from "react"
 import Card from "@/components/Cards/Card";
 
+
 interface Props{
   id: number;
   name: string;
@@ -54,7 +55,7 @@ const Tags = () => {
           <Sidebar/>
         </div>
         <div className='col-span-10 ml-3'>
-          <h1 className='font-bold text-6xl text-amber-200 mb-4'>
+          <h1 className='font-bold text-5xl text-amber-200 mb-4'>
             Tags
           </h1>
           <div className='flex flex-wrap gap-4'>
@@ -62,7 +63,7 @@ const Tags = () => {
             <Card key={tag.id} title={tag.name} type="tags" slug={tag.slug}  image={tag.image_background}/>
           ))}
           </div>
-          {loading && <p className='text-2xl text-amber-200 font-bold text-center mt-6'>Loading...</p>}
+          {loading && <p className='text-2xl text-[#E50914] font-bold text-center mt-6'>Loading...</p>}
           
         </div>
     </div>

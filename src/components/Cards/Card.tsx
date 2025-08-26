@@ -11,7 +11,7 @@ const Card = ({ title, image, slug, type }: Props) => {
   return (
     <Link to={`/${type}/${slug}`}>
       <div 
-        className="relative hover:scale-95 hover:shadow-amber-200 transform transition-transform duration-200 h-[230px] w-[280px] text-gray-50 rounded-lg shadow-lg overflow-hidden"
+        className="relative hover:scale-90 border hover:border-[#E50914] hover:shadow-[#E50914] transform transition-transform duration-200 h-[230px] w-[280px] text-gray-50 rounded-lg shadow-lg overflow-hidden"
         style={{
           backgroundImage: `url(${image})`,
           backgroundSize: "cover",

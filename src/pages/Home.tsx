@@ -25,7 +25,7 @@ const Home = () => {
 
   const fetchNewGames = async () => {
     const res = await fetch(
-      `https://api.rawg.io/api/games?key=${import.meta.env.VITE_API_KEY}&dates=2024-01-01,2025-12-31&ordering=-added&page_size=12`
+      `https://api.rawg.io/api/games?key=${import.meta.env.VITE_API_KEY}&dates=2025-09-01,2025-12-31&ordering=-added&page_size=12`
     );
     const data = await res.json();
     setNewGames(data.results);
@@ -36,9 +36,11 @@ const Home = () => {
     fetchNewGames();
   }, []);
 
+  
+
   return (
-    <div className="grid grid-cols-12 min-h-screen gap-6 p-6">
-      <div className="hidden 2xl:block col-span-2">
+    <div className="grid grid-cols-12 min-h-screen gap-6 p-3">
+      <div className="hidden  2xl:block col-span-2">
         <SideBar  />
       </div>
       
@@ -54,7 +56,7 @@ const Home = () => {
 
         {/* Upcoming Games Row */}
         <div className="overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-          <div className="flex gap-4 pb-4 justify-center 2xl:justify-start">
+          <div className="flex gap-5 pb-4 justify-center 2xl:justify-start">
             {newgames.map((game) => (
               <div key={game.id} className="flex-shrink-0 min-w-[300px]">
                 <Upcoming

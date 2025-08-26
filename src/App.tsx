@@ -10,7 +10,7 @@ import Description from './components/Description'
 const App = () => {
   return (
     <Router>
-      <div className='min-h-screen bg-[#0B0C10]'>
+      <div className='min-h-screen bg-[#0A0A0A]'>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/favourites" element={<Favourites />} />
