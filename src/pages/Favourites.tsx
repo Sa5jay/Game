@@ -1,4 +1,4 @@
-import GameDetails from "@/components/GameDetails"
+
 import Sidebar from "@/components/Sidebar"
 
 
