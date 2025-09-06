@@ -1,6 +1,8 @@
 import Sidebar from "@/components/Sidebar"
 import React from "react"
 import Card from "@/components/Cards/Card";
+import { BounceLoader
+ } from "react-spinners";
 
 
 interface Props{
@@ -63,7 +65,8 @@ const Tags = () => {
             <Card key={tag.id} title={tag.name} type="tags" slug={tag.slug}  image={tag.image_background}/>
           ))}
           </div>
-          {loading && <p className='text-2xl text-[#E50914] font-bold text-center mt-6'>Loading...</p>}
+          {loading &&  <div className="flex justify-center items-center"><BounceLoader
+ color="red"/></div>}
           
         </div>
     </div>

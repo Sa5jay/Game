@@ -1,6 +1,8 @@
 import Card from '@/components/Cards/Card';
 import Sidebar from '@/components/Sidebar'
 import React, { useState } from 'react'
+import { BounceLoader } from 'react-spinners'
+
 interface Props{
   id: number;
   name: string;
@@ -10,12 +12,17 @@ interface Props{
 
 const Genres = () => {
   const [genres, setGenres] = useState<Props[]>([]);
+    const [loading, setLoading] = React.useState(false);
+  
   const fetchgenres = async () => {
+    if(loading) return;
+      setLoading(true);
     const res = await fetch(
       `https://api.rawg.io/api/genres?key=${import.meta.env.VITE_API_KEY}`
     );
     const data = await res.json();
     setGenres(data.results);
+    setLoading(false);
   };
 
   React.useEffect(() => {
@@ -36,7 +43,8 @@ const Genres = () => {
             <Card key={genre.id} title={genre.name} type='genres' slug={genre.slug} image={genre.image_background}/>
           ))}
           </div>
-          
+          {loading &&  <div className="flex justify-center items-center"><BounceLoader
+           color="red"/></div>}
         </div>
     </div>
   )

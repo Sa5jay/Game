@@ -1,6 +1,7 @@
 import Sidebar from "@/components/Sidebar"
 import React, { useState } from 'react'
 import Card from "@/components/Cards/Card";
+import { BounceLoader } from "react-spinners";
 
 interface Props{
   id: number;
@@ -12,12 +13,16 @@ interface Props{
 
 const Platforms = () => {
   const [platforms, setPlatforms] = useState<Props[]>([]);
+  const [loading, setLoading] = useState(false);
     const fetchplatforms = async () => {
+      if(loading) return;
+      setLoading(true);
       const res = await fetch(
         `https://api.rawg.io/api/platforms?key=${import.meta.env.VITE_API_KEY}`
       );
       const data = await res.json();
       setPlatforms(data.results);
+      setLoading(false);
     };
   
     React.useEffect(() => {
@@ -35,6 +40,8 @@ const Platforms = () => {
             <Card slug={platform.id}  title={platform.name}  type="platforms"  image={platform.image_background}/> 
           ))}
           </div>
+          {loading &&  <div className="flex justify-center items-center"><BounceLoader
+ color="red"/></div>}
         </div>
         
           

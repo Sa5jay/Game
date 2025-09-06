@@ -1,5 +1,6 @@
 import GameCard from "./Cards/GameCard"
 import { useState, useEffect } from "react"
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface Props {
   background_image: string;
@@ -15,7 +16,7 @@ interface BodyProps {
 const Body = ({ onMainClick, allgames }: BodyProps) => {
   const [gamesToShow, setGamesToShow] = useState<Props[]>([]);
   const [activeTab, setActiveTab] = useState<"main" | "best" | "alltime">("main");
-  const [selectedYear, setSelectedYear] = useState<number>(new Date().getFullYear()); // default: current year
+  const [selectedYear, setSelectedYear] = useState<number>(new Date().getFullYear());
 
   // keep gamesToShow in sync with allgames
   useEffect(() => {
@@ -48,7 +49,6 @@ const Body = ({ onMainClick, allgames }: BodyProps) => {
     onMainClick();
   };
 
-  // 👇 re-fetch whenever year changes & tab is "best"
   useEffect(() => {
     if (activeTab === "best") {
       fetchBestOfYear(selectedYear);
@@ -65,7 +65,7 @@ const Body = ({ onMainClick, allgames }: BodyProps) => {
         <button
           onClick={onMainClickHandler}
           className={`hover:border-t hover:border-gray-100 hover:cursor-pointer 
-            ${activeTab === "main" ? "text-[#E50914]" : "text-white"} hover:text-[#FFCC00]`}
+            ${activeTab === "main" ? "text-[#E50914]" : "text-white"} `}
         >
           Main
         </button>
@@ -73,7 +73,7 @@ const Body = ({ onMainClick, allgames }: BodyProps) => {
         <button
           onClick={() => fetchBestOfYear(selectedYear)}
           className={`hover:border-t hover:border-gray-100 hover:cursor-pointer 
-            ${activeTab === "best" ? "text-[#E50914]" : "text-white"} hover:text-[#FFCC00]`}
+            ${activeTab === "best" ? "text-[#E50914]" : "text-white"} `}
         >
           Best of the Year
         </button>
@@ -81,13 +81,12 @@ const Body = ({ onMainClick, allgames }: BodyProps) => {
         <button
           onClick={fetchAllTimeTop}
           className={`hover:border-t hover:border-gray-100 hover:cursor-pointer 
-            ${activeTab === "alltime" ? "text-[#E50914]" : "text-white"} hover:text-[#FFCC00]`}
+            ${activeTab === "alltime" ? "text-[#E50914]" : "text-white"} `}
         >
           All time top
         </button>
       </div>
 
-      
       {activeTab === "best" && (
         <div className="flex justify-start mt-4">
           <select
@@ -106,13 +105,36 @@ const Body = ({ onMainClick, allgames }: BodyProps) => {
 
       {/* Game cards */}
       <div className="flex flex-wrap justify-center mt-4 gap-5">
-        {gamesToShow.map((game) => (
-          <GameCard
-            key={game.id}
-            title={game.name}
-            bgImage={game.background_image}
-          />
-        ))}
+        {gamesToShow.length === 0
+          ? Array.from({ length: 12 }).map((_, i) => (
+              <div
+                key={i}
+                className="relative bg-[#111111] w-[290px] h-[300px] shadow-lg border overflow-hidden mt-1 rounded-xl"
+              >
+                {/* Skeleton for image */}
+                <Skeleton className="w-full h-40 rounded-t-xl" />
+
+                <div className="p-2 space-y-2">
+                  {/* Title placeholder */}
+                  <Skeleton className="h-5 w-[70%] rounded" />
+
+                  <div className="flex gap-5">
+                    {/* Year placeholder */}
+                    <Skeleton className="h-4 w-[50px] rounded" />
+                    {/* Genre placeholder */}
+                    <Skeleton className="h-4 w-[70px] rounded" />
+                  </div>
+                </div>
+              </div>
+            ))
+          : gamesToShow.map((game) => (
+              <GameCard
+                key={game.id}
+                title={game.name}
+                bgImage={game.background_image}
+                id={game.id}
+              />
+            ))}
       </div>
     </div>
   );
