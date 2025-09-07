@@ -65,7 +65,7 @@ const Tags = () => {
             <Card key={tag.id} title={tag.name} type="tags" slug={tag.slug}  image={tag.image_background}/>
           ))}
           </div>
-          {loading &&  <div className="flex justify-center items-center"><BounceLoader
+          {loading &&  <div className="flex mt-5 justify-center items-center"><BounceLoader
  color="red"/></div>}
           
         </div>

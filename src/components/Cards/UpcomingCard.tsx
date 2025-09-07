@@ -6,7 +6,7 @@ interface Props {
 
 const Upcoming: React.FC<Props> = ({ backgroundImage, title }) => {
   return (
-    <div className="bg-[#111111] justify-center  2xl:w-[350px]  h-[250px] mt-4 rounded-xl overflow-hidden shadow-lg">
+    <div className="bg-[#111111] justify-center lg:w-[250px] md:w-[150px] 2xl:w-[350px]  2xl:h-[250px] mt-4 rounded-xl overflow-hidden shadow-lg">
       
       <img
         src={backgroundImage}

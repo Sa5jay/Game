@@ -1,11 +1,16 @@
 import GameCard from "./Cards/GameCard"
 import { useState, useEffect } from "react"
 import { Skeleton } from "@/components/ui/skeleton";
+import { BounceLoader } from "react-spinners";
 
 interface Props {
   background_image: string;
   name: string;
   id: number;
+  rating: number; // optional
+  released: string; // optional
+  genres: { id: number; name: string }[];
+  platforms: { platform: { id: number; name: string } }[];
 }
 
 interface BodyProps {
@@ -17,6 +22,7 @@ const Body = ({ onMainClick, allgames }: BodyProps) => {
   const [gamesToShow, setGamesToShow] = useState<Props[]>([]);
   const [activeTab, setActiveTab] = useState<"main" | "best" | "alltime">("main");
   const [selectedYear, setSelectedYear] = useState<number>(new Date().getFullYear());
+  const [loading, setLoading] = useState(false);
 
   // keep gamesToShow in sync with allgames
   useEffect(() => {
@@ -26,21 +32,25 @@ const Body = ({ onMainClick, allgames }: BodyProps) => {
   }, [allgames, activeTab]);
 
   const fetchBestOfYear = async (year: number) => {
+    setLoading(true);
     const res = await fetch(
       `https://api.rawg.io/api/games?key=${import.meta.env.VITE_API_KEY}&dates=${year}-01-01,${year}-12-31&ordering=-rating&page_size=40`
     );
     const data = await res.json();
     setActiveTab("best");
     setGamesToShow(data.results);
+    setLoading(false);
   };
 
   const fetchAllTimeTop = async () => {
+    setLoading(true);
     const res = await fetch(
       `https://api.rawg.io/api/games?key=${import.meta.env.VITE_API_KEY}&ordering=-metacritic&page_size=40`
     );
     const data = await res.json();
     setActiveTab("alltime");
     setGamesToShow(data.results);
+    setLoading(false);
   };
 
   const onMainClickHandler = () => {
@@ -59,7 +69,7 @@ const Body = ({ onMainClick, allgames }: BodyProps) => {
   const years = Array.from({ length: 10 }, (_, i) => new Date().getFullYear() - i);
 
   return (
-    <div>
+    <>
       {/* Tabs */}
       <div className="flex text-white text-md gap-5 w-full border-b border-gray-700 justify-start items-center">
         <button
@@ -103,8 +113,8 @@ const Body = ({ onMainClick, allgames }: BodyProps) => {
         </div>
       )}
 
-      {/* Game cards */}
-      <div className="flex flex-wrap justify-center mt-4 gap-5">
+      {loading ? <div className="flex justify-center items-center"><BounceLoader
+ color="red"/></div> : <div className="flex flex-wrap justify-center mt-4 gap-5">
         {gamesToShow.length === 0
           ? Array.from({ length: 12 }).map((_, i) => (
               <div
@@ -129,14 +139,19 @@ const Body = ({ onMainClick, allgames }: BodyProps) => {
             ))
           : gamesToShow.map((game) => (
               <GameCard
-                key={game.id}
-                title={game.name}
-                bgImage={game.background_image}
                 id={game.id}
+  bgImage={game.background_image}
+  title={game.name}
+  rating={game.rating}
+  released={game.released}
+  genres={game.genres || []}
+  platforms={game.platforms || []}
               />
             ))}
-      </div>
-    </div>
+      </div>}
+
+      
+    </>
   );
 };
 

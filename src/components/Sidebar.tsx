@@ -2,6 +2,7 @@ import { FaHome, FaHeart, FaTag, FaStore } from "react-icons/fa";
 import { SiPlatformdotsh } from "react-icons/si";
 import { RiComputerFill } from "react-icons/ri";
 import { Link, useLocation } from "react-router-dom";
+import { FaGoogle } from "react-icons/fa";
 
 const Sidebar = () => {
   const location = useLocation(); // Get current route path
@@ -25,7 +26,6 @@ const Sidebar = () => {
         </h1>
       </div>
 
-      {/* Navigation Links */}
       <div className='flex-1 font-bold text-2xl'>
         {links.map((link) => {
           const isActive = location.pathname === link.path;
@@ -34,8 +34,8 @@ const Sidebar = () => {
               key={link.name}
               to={link.path}
               className={`flex mb-4 items-center gap-2 font-bold 
-                ${isActive ? "text-[#E50914]" : "text-white"} 
-                hover:text-[#FFCC00]`}
+                ${isActive ? "text-[#E50914]" : "text-white hover:text-amber-300"} 
+                `}
             >
               {link.icon}
               {link.name}
@@ -43,6 +43,10 @@ const Sidebar = () => {
           );
         })}
       </div>
+      <div className="flex justify-center items-end gap-2 text-white p-5 text-lg bg-red-500 rounded-lg">
+        <FaGoogle className="mb-1" />
+        <h1>Sign in with Google</h1>
+        </div>
     </div>
   );
 };
