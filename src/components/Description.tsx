@@ -7,6 +7,10 @@ interface Game {
   id: number;
   background_image: string;
   name: string;
+  rating: number; 
+  released: string; 
+  genres: { id: number; name: string }[]; 
+  platforms: { platform: { id: number; name: string } }[];
 }
 
 interface Details {
@@ -83,8 +87,12 @@ const Description = () => {
           {games.map((game) => (
             <GameCard
               id={game.id}
-              bgImage={game.background_image}
-              title={game.name}
+  bgImage={game.background_image}
+  title={game.name}
+  rating={game.rating}
+  released={game.released}
+  genres={game.genres || []}
+  platforms={game.platforms || []}
             />
           ))}
         </div>
