@@ -18,8 +18,8 @@ const GameCard = ({ bgImage, title,id }: Props) => {
       <div className="p-2">
         <h1 className="text-white text-lg font-bold">{title}</h1>
         <div className="flex gap-5">
-          <p className="text-gray-400">Year</p>
-          <p className="text-gray-400">Genre</p>
+          <span className="text-gray-400">Year</span>
+          <span className="text-gray-400">Genre</span>
         </div>
       </div>
     </div>
