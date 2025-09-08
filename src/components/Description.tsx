@@ -24,8 +24,7 @@ interface Details {
 const Description = () => {
   const { slug, id } = useParams<{ slug?: string; id?: string }>();
   const location = useLocation();
-  const type = location.pathname.split("/")[1]; 
-
+  const type = location.pathname.split("/")[1];
   const [details, setDetails] = useState<Details | null>(null);
   const [games, setGames] = useState<Game[]>([]);
 
@@ -65,34 +64,37 @@ const Description = () => {
   }, [slug, id, type]);
 
   return (
-    <div className="grid grid-cols-12 min-h-screen gap-6 p-6 ml-3">
-      <div className="hidden 2xl:block col-span-2">
-        <Sidebar />
-      </div>
-      <div className="2xl:col-span-10">
+    <div className="min-h-screen bg-black">
+      {/* Responsive Sidebar */}
+      <Sidebar />
+      <div className="md:ml-66 md:pt-6 px-2 md:px-6">
         {details && (
-          <div style={{ backgroundImage: `url(${details.image_background} )` }} className="bg-cover  bg-center rounded-lg  mb-6 shadow-lg" >
-            <div className="inset-0 overflow-hidden rounded-lg bg-black/80 p-6">
-              <h1 className="text-5xl   font-bold  text-amber-200 mb-2">
-              {details.name}
-            </h1>
-            <p className="text-white text-lg mb-4">{details.description.replace(/<[^>]+>/g, '')}</p>
+          <div
+            style={{ backgroundImage: `url(${details.image_background})` }}
+            className="bg-cover bg-center rounded-lg mb-6 shadow-lg"
+          >
+            <div className="inset-0 overflow-hidden rounded-lg bg-black/80 p-4 md:p-6">
+              <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-amber-200 mb-2">
+                {details.name}
+              </h1>
+              <p className="text-white text-sm sm:text-base md:text-lg mb-4">
+                {details.description.replace(/<[^>]+>/g, '')}
+              </p>
             </div>
-            
           </div>
         )}
-        <h1 className="text-white mb-3 font-bold text-3xl">Related games :</h1>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-2">
+        <h1 className="text-white mb-3 font-bold text-xl sm:text-2xl md:text-3xl">Related games :</h1>
+        <div className="grid grid-cols-2  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-2">
           {games.map((game) => (
             <GameCard
+              key={game.id}
               id={game.id}
-  bgImage={game.background_image}
-  title={game.name}
-  rating={game.rating}
-  released={game.released}
-  genres={game.genres || []}
-  platforms={game.platforms || []}
+              bgImage={game.background_image}
+              title={game.name}
+              rating={game.rating}
+              released={game.released}
+              genres={game.genres || []}
+              platforms={game.platforms || []}
             />
           ))}
         </div>

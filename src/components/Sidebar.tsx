@@ -26,7 +26,7 @@ const Sidebar = () => {
   return (
     <>
       {/* Sidebar for md and above */}
-      <div className="hidden md:flex fixed left-0 top-0 m-4 bg-[#111111] border border-[#E50914] rounded-lg max-h-screen w-64 h-175 p-4 flex-col z-40">
+      <div className="hidden md:flex  fixed left-0 top-0 m-4 bg-[#111111] border border-[#E50914] rounded-lg max-h-screen w-64 h-175 p-4 flex-col z-40">
         <div>
           <h1 className='flex justify-center items-center rounded-xl m-2 mb-8 p-4 border-t border-b border-[#E50914] text-white text-3xl'>
             GameZone
@@ -52,9 +52,9 @@ const Sidebar = () => {
       </div>
 
       {/* Mobile: GameZone left, icons center, menu right */}
-      <nav className="md:hidden w-full px-2 py-2 bg-[#181818] border-b border-[#E50914] flex items-center justify-between z-50 relative">
+      <nav className="md:hidden w-full px-3 py-2 bg-[#181818] border-b border-[#E50914] flex items-center justify-between z-50 relative">
         {/* GameZone left */}
-        <span className="text-white text-base xs:text-lg sm:text-xl font-bold flex-shrink-0 max-w-[30vw] truncate">
+        <span className="text-[#E50914] text-base xs:text-lg sm:text-xl font-bold flex-shrink-0 max-w-[30vw] truncate">
           GameZone
         </span>
         {/* Centered icons */}

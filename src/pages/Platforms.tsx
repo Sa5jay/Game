@@ -2,6 +2,7 @@ import Sidebar from "@/components/Sidebar"
 import React, { useState } from 'react'
 import Card from "@/components/Cards/Card";
 import { BounceLoader } from "react-spinners";
+import Searchbar from "@/components/Searchbar";
 
 interface Props{
   id: number;
@@ -10,42 +11,43 @@ interface Props{
   slug: string;
 }
 
-
 const Platforms = () => {
   const [platforms, setPlatforms] = useState<Props[]>([]);
   const [loading, setLoading] = useState(false);
-    const fetchplatforms = async () => {
-      if(loading) return;
-      setLoading(true);
-      const res = await fetch(
-        `https://api.rawg.io/api/platforms?key=${import.meta.env.VITE_API_KEY}`
-      );
-      const data = await res.json();
-      setPlatforms(data.results);
-      setLoading(false);
-    };
-  
-    React.useEffect(() => {
-      fetchplatforms();
-    }, []);
+  const fetchplatforms = async () => {
+    if(loading) return;
+    setLoading(true);
+    const res = await fetch(
+      `https://api.rawg.io/api/platforms?key=${import.meta.env.VITE_API_KEY}`
+    );
+    const data = await res.json();
+    setPlatforms(data.results);
+    setLoading(false);
+  };
+
+  React.useEffect(() => {
+    fetchplatforms();
+  }, []);
   return (
-    <div className='grid grid-cols-12 min-h-screen gap-6 p-6'>
-       <div className='min-h-screen col-span-2'>
-          <Sidebar />
+    <div className="min-h-screen bg-black">
+      {/* Responsive Sidebar */}
+      <Sidebar />
+      <div className="md:ml-66  md:pt-6 px-2 md:px-6">
+        <div className="mb-2">
+          <Searchbar/>
         </div>
-        <div className="col-span-10 ml-3">
-          <h1 className="text-amber-200 text-5xl mb-4 font-bold">Platforms</h1>
-          <div  className='flex flex-wrap  gap-4'>
-            {platforms.map((platform) => (    
+        <h1 className="text-amber-200 text-3xl md:text-5xl mb-4 font-bold">Platforms</h1>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {platforms.map((platform) => (    
             <Card slug={platform.id}  title={platform.name}  type="platforms"  image={platform.image_background}/> 
           ))}
-          </div>
-          {loading &&  <div className="flex justify-center items-center"><BounceLoader
- color="red"/></div>}
         </div>
-        
-          
-
+        {loading && (
+          <div className="flex justify-center items-center mt-4">
+            <BounceLoader color="red"/>
+          </div>
+        )}
+      </div>
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import Card from '@/components/Cards/Card';
+import Searchbar from '@/components/Searchbar';
 import Sidebar from '@/components/Sidebar'
 import React, { useState } from 'react'
 import { BounceLoader } from 'react-spinners'
@@ -12,11 +13,11 @@ interface Props{
 
 const Genres = () => {
   const [genres, setGenres] = useState<Props[]>([]);
-    const [loading, setLoading] = React.useState(false);
-  
+  const [loading, setLoading] = React.useState(false);
+
   const fetchgenres = async () => {
     if(loading) return;
-      setLoading(true);
+    setLoading(true);
     const res = await fetch(
       `https://api.rawg.io/api/genres?key=${import.meta.env.VITE_API_KEY}`
     );
@@ -30,22 +31,26 @@ const Genres = () => {
   }, []);
 
   return (
-    <div className='grid grid-cols-12 min-h-screen gap-6 p-6'>
-       <div className='min-h-screen col-span-2'>
-          <Sidebar   />
+    <div className="min-h-screen bg-black">
+      <Sidebar />
+      <div className="md:ml-66  md:pt-6 px-2 md:px-6">
+        <div className='mb-2'>
+          <Searchbar/>
         </div>
-        <div className='col-span-10 ml-3'>
-          <h1 className='font-bold text-6xl text-amber-200 mb-4'>
-            Genres
-          </h1>
-          <div className='flex flex-wrap gap-4'>
-            {genres.map((genre) => (
+        <h1 className="font-bold text-3xl md:text-6xl text-amber-200 mb-4">
+          Genres
+        </h1>
+        <div className="grid grid-cols-2  sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {genres.map((genre) => (
             <Card key={genre.id} title={genre.name} type='genres' slug={genre.slug} image={genre.image_background}/>
           ))}
-          </div>
-          {loading &&  <div className="flex justify-center items-center"><BounceLoader
-           color="red"/></div>}
         </div>
+        {loading && (
+          <div className="flex justify-center items-center mt-4">
+            <BounceLoader color="red"/>
+          </div>
+        )}
+      </div>
     </div>
   )
 }
