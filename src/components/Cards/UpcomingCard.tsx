@@ -1,4 +1,3 @@
-
 interface Props {
   backgroundImage: string;
   title: string;
@@ -6,22 +5,17 @@ interface Props {
 
 const Upcoming: React.FC<Props> = ({ backgroundImage, title }) => {
   return (
-    <div className="bg-[#111111] justify-center lg:w-[250px] md:w-[150px] 2xl:w-[350px]  2xl:h-[250px] mt-4 rounded-xl overflow-hidden shadow-lg">
-      
+    <div className="bg-[#111111] flex flex-col h-full w-full rounded-xl overflow-hidden shadow-lg">
       <img
         src={backgroundImage}
         alt="Preview"
-        className="w-full object-cover h-50"
+        className="w-full h-48 object-cover flex-shrink-0"
       />
-      <div className="p-3 flex items-center justify-between text-gray-500 ">
-        <h2 className=" font-bold  ">{title}</h2>
+      <div className="p-3 flex-1 flex flex-col items-start text-gray-500">
+        <h2 className="font-bold mb-3 w-full line-clamp-2">{title}</h2>
       </div>
     </div>
+  );
+};
 
-
-
-
-  )
-}
-
-export default Upcoming
+export default Upcoming;

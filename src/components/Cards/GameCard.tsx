@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 
@@ -13,7 +14,7 @@ interface Props {
 
 const GameCard = ({ bgImage, title, id, rating, released, genres,platforms }: Props) => {
   return (
-    <div className="relative group bg-[#111111] w-[290px] h-[340px] shadow-lg border hover:border-[#E50914] hover:shadow-[#E50914] overflow-hidden mt-1 rounded-xl transition-all duration-300">
+    <div className=" bg-[#111111] w-full h-full shadow-lg border hover:border-[#E50914] hover:shadow-[#E50914] overflow-hidden  rounded-xl transition-all duration-300">
 
       <img
         src={bgImage}

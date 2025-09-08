@@ -113,46 +113,47 @@ const Body = ({ onMainClick, allgames }: BodyProps) => {
         </div>
       )}
 
-      {loading ? <div className="flex justify-center items-center"><BounceLoader
- color="red"/></div> : <div className="flex flex-wrap justify-center mt-4 gap-5">
-        {gamesToShow.length === 0
-          ? Array.from({ length: 12 }).map((_, i) => (
-              <div
-                key={i}
-                className="relative bg-[#111111] w-[290px] h-[300px] shadow-lg border overflow-hidden mt-1 rounded-xl"
-              >
-                {/* Skeleton for image */}
-                <Skeleton className="w-full h-40 rounded-t-xl" />
 
-                <div className="p-2 space-y-2">
-                  {/* Title placeholder */}
-                  <Skeleton className="h-5 w-[70%] rounded" />
 
-                  <div className="flex gap-5">
-                    {/* Year placeholder */}
-                    <Skeleton className="h-4 w-[50px] rounded" />
-                    {/* Genre placeholder */}
-                    <Skeleton className="h-4 w-[70px] rounded" />
-                  </div>
-                </div>
+{loading ? <div className="flex justify-center items-center"><BounceLoader color="red"/></div> : 
+
+  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 mt-4 gap-3">
+    {gamesToShow.length === 0
+      ? Array.from({ length: 12 }).map((_, i) => (
+          <div
+            key={i}
+            className="relative bg-[#111111] w-full h-[300px] shadow-lg border overflow-hidden mt-1 rounded-xl"
+          >
+            <Skeleton className="w-full h-40 rounded-t-xl" />
+            <div className="p-2 space-y-2">
+              <Skeleton className="h-5 w-[70%] rounded" />
+              <div className="flex gap-5">
+                <Skeleton className="h-4 w-[50px] rounded" />
+                <Skeleton className="h-4 w-[70px] rounded" />
               </div>
-            ))
-          : gamesToShow.map((game) => (
-              <GameCard
-                id={game.id}
-  bgImage={game.background_image}
-  title={game.name}
-  rating={game.rating}
-  released={game.released}
-  genres={game.genres || []}
-  platforms={game.platforms || []}
-              />
-            ))}
-      </div>}
+            </div>
+          </div>
+        ))
+      : gamesToShow.map((game) => (
+          <GameCard
+            id={game.id}
+            bgImage={game.background_image}
+            title={game.name}
+            rating={game.rating}
+            released={game.released}
+            genres={game.genres || []}
+            platforms={game.platforms || []}
+          />
+        ))}
+  </div>
+
+}
+
+
 
       
     </>
   );
 };
 
-export default Body;
+export default Body; 

@@ -7,6 +7,7 @@ import Stores from './pages/Stores'
 import Platforms from './pages/Platforms'
 import Description from './components/Description'
 import GameDetails from './components/GameDetails'
+import Developers from './pages/Developers'
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/genres" element={<Genres />} />
           <Route path="/stores" element={<Stores />} />
           <Route path="/platforms" element={<Platforms />} />
+          <Route path="/developers" element={<Developers />} />
           <Route path="/tags/:slug" element={<Description />} />
           <Route path="/genres/:slug" element={<Description />} />
           <Route path="/platforms/:id" element={<Description />} />

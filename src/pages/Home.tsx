@@ -5,7 +5,6 @@ import Body from "@/components/body";
 import Upcoming from "@/components/Cards/UpcomingCard";
 import { Skeleton } from "@/components/ui/skeleton";
 
-
 interface Game {
   id: number;
   name: string;
@@ -21,7 +20,6 @@ const Home = () => {
   const [newgames, setNewGames] = useState<Game[]>([]);
   const [loading, setLoading] = useState(false);
 
-
   const fetchAllGames = async () => {
     setLoading(true);
     const res = await fetch(
@@ -29,7 +27,7 @@ const Home = () => {
     );
     const data = await res.json();
     setAllGames(data.results);
-    setLoading(true);
+    setLoading(false);
   };
 
   const fetchNewGames = async () => {
@@ -45,51 +43,44 @@ const Home = () => {
   useEffect(() => {
     fetchAllGames();
     fetchNewGames();
-    
   }, []);
 
-  
-
   return (
-    <div className="grid grid-cols-12 min-h-screen gap-6 p-3">
-      <div className="hidden  2xl:block col-span-2">
-        <SideBar  />
-      </div>
-      
+    <div className="min-h-screen bg-black">
+      <SideBar />
+      <div className="md:ml-70 md:pt-4 px-2 md:px-4">
+        <Searchbar />
 
-      <div className="2xl:col-span-10 ml-0 2xl:ml-4">
-        
-        <div className="w-full flex items-center justify-between ">
-          <Searchbar />
+        <div className="mt-4">
+          <h1 className="text-amber-200 text-2xl md:text-4xl font-bold mb-2">
+            Upcoming Games
+          </h1>
+          <div className="overflow-x-auto min-w-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex gap-4 pb-3">
+              {loading
+                ? Array.from({ length: 6 }).map((_, i) => (
+                    <div
+                      key={i}
+                      className="flex-shrink-0 box-border w-[92vw] sm:w-[60vw] md:w-[38vw] lg:w-[28vw] xl:w-[22vw] max-w-[500px]"
+                    >
+                      <Skeleton className="h-[180px] w-full md:h-[250px] rounded-lg" />
+                    </div>
+                  ))
+                : newgames.map((game) => (
+                    <div
+                      key={game.id}
+                      className="flex-shrink-0 box-border w-[82vw] sm:w-[60vw] md:w-[38vw] lg:w-[28vw] xl:w-[22vw] max-w-[500px]"
+                    >
+                      <Upcoming
+                        backgroundImage={game.background_image}
+                        title={game.name}
+                      />
+                    </div>
+                  ))}
+            </div>
+          </div>
         </div>
 
-        <div className="mt-5">
-          <h1 className="text-amber-200 text-4xl font-bold">Upcoming Games</h1>
-          
-
-
-        <div className="overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-  <div className="flex gap-5 pb-4 justify-center 2xl:justify-start">
-    {loading
-      ? Array.from({ length: 6 }).map((_, i) => (
-          <div key={i} className="flex-shrink-0 mt-2 min-w-[350px]">
-            <Skeleton className="h-[250px] w-[350px] rounded-lg" />
-          </div>
-        ))
-      : newgames.map((game) => (
-          <div key={game.id} className="flex-shrink-0 min-w-[350px]">
-            <Upcoming
-              backgroundImage={game.background_image}
-              title={game.name}
-            />
-          </div>
-        ))}
-  </div>
-</div>
-
-        </div>
-
-        
         <Body allgames={allgames} onMainClick={fetchAllGames} />
       </div>
     </div>
