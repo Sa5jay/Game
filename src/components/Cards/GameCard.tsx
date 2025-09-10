@@ -14,21 +14,21 @@ interface Props {
 
 const GameCard = ({ bgImage, title, id, rating, released, genres,platforms }: Props) => {
   return (
-    <div className=" bg-[#111111] w-full h-full shadow-lg border hover:border-[#E50914] hover:shadow-[#E50914] overflow-hidden  rounded-xl transition-all duration-300">
+    <div className=" text-white w-full h-full border border-[#111111] rounded-lg   overflow-hidden   transition-all duration-300">
 
       <img
         src={bgImage}
         alt={title}
-        className="w-full h-40 object-cover"
+        className="w-full h-40  object-cover"
         loading="lazy"
 />
 <div className="p-3">
   <Link to={`/game/${id}`}>
-    <h1 className="text-white text-lg font-bold truncate">{title}</h1>
+    <h1 className=" text-lg font-bold truncate">{title}</h1>
   </Link>
 
   {(rating || released) && (
-    <div className="flex justify-between text-sm text-gray-400 mt-1">
+    <div className="flex justify-between text-sm  mt-1">
       <span className="flex items-center gap-1">
         <FaStar className="text-yellow-400" />
         {rating.toFixed(1)}
@@ -42,7 +42,7 @@ const GameCard = ({ bgImage, title, id, rating, released, genres,platforms }: Pr
       {genres.slice(0, 2).map((g) => (
         <span
           key={g.id}
-          className=" text-xs bg-gray-900 text-gray-300 px-1 py-1 rounded"
+          className=" text-xs text-gray-400 px-1 py-1 rounded"
         >
           {g.name}
         </span>
@@ -54,7 +54,7 @@ const GameCard = ({ bgImage, title, id, rating, released, genres,platforms }: Pr
       {platforms.slice(0, 2).map((g) => (
         <span
           key={g.platform.id}
-          className="text-xs bg-gray-900 text-gray-300 px-1 py-1 rounded"
+          className="text-xs text-gray-400 px-1 py-1 rounded"
         >
           {g.platform.name}
         </span>

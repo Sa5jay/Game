@@ -7,8 +7,8 @@ interface Props {
   background_image: string;
   name: string;
   id: number;
-  rating: number; // optional
-  released: string; // optional
+  rating: number;
+  released: string;
   genres: { id: number; name: string }[];
   platforms: { platform: { id: number; name: string } }[];
 }
@@ -24,7 +24,6 @@ const Body = ({ onMainClick, allgames }: BodyProps) => {
   const [selectedYear, setSelectedYear] = useState<number>(new Date().getFullYear());
   const [loading, setLoading] = useState(false);
 
-  // keep gamesToShow in sync with allgames
   useEffect(() => {
     if (activeTab === "main") {
       setGamesToShow(allgames);
@@ -45,7 +44,7 @@ const Body = ({ onMainClick, allgames }: BodyProps) => {
   const fetchAllTimeTop = async () => {
     setLoading(true);
     const res = await fetch(
-      `https://api.rawg.io/api/games?key=${import.meta.env.VITE_API_KEY}&ordering=-metacritic&page_size=40`
+      `https://api.rawg.io/api/games?key=${import.meta.env.VITE_API_KEY}&ordering=-rating&page_size=40`
     );
     const data = await res.json();
     setActiveTab("alltime");
@@ -64,45 +63,40 @@ const Body = ({ onMainClick, allgames }: BodyProps) => {
       fetchBestOfYear(selectedYear);
     }
   }, [selectedYear]);
-
-  // Years dropdown list (last 10 years)
-  const years = Array.from({ length: 10 }, (_, i) => new Date().getFullYear() - i);
-
+  const years = Array.from({ length: 20 }, (_, i) => new Date().getFullYear() - i);
   return (
     <>
-      {/* Tabs */}
-      <div className="flex text-white text-md gap-5 w-full border-b border-gray-700 justify-start items-center">
+      <div className="flex text-white text-lg text-md gap-5 w-full  justify-start items-center">
         <button
           onClick={onMainClickHandler}
-          className={`hover:border-t hover:border-gray-100 hover:cursor-pointer 
-            ${activeTab === "main" ? "text-[#E50914]" : "text-white"} `}
+          className={`  hover:cursor-pointer 
+            ${activeTab === "main" ? "text-[#E50914]" : " hover:text-gray-400"} `}
         >
           Main
         </button>
 
         <button
           onClick={() => fetchBestOfYear(selectedYear)}
-          className={`hover:border-t hover:border-gray-100 hover:cursor-pointer 
-            ${activeTab === "best" ? "text-[#E50914]" : "text-white"} `}
+          className={` hover:cursor-pointer 
+            ${activeTab === "best" ? "text-[#E50914]" : " hover:text-gray-400"} `}
         >
           Best of the Year
         </button>
 
         <button
           onClick={fetchAllTimeTop}
-          className={`hover:border-t hover:border-gray-100 hover:cursor-pointer 
-            ${activeTab === "alltime" ? "text-[#E50914]" : "text-white"} `}
+          className={` hover:cursor-pointer 
+            ${activeTab === "alltime" ? "text-[#E50914]" : " hover:text-gray-400"} `}
         >
           All time top
         </button>
       </div>
-
       {activeTab === "best" && (
         <div className="flex justify-start mt-4">
           <select
             value={selectedYear}
             onChange={(e) => setSelectedYear(parseInt(e.target.value))}
-            className="bg-[#E50914] text-white border border-[#E50914] rounded px-3 py-2"
+            className="] text-white border bg-black border-[#111] hover:cursor-pointer rounded px-3 py-2"
           >
             {years.map((year) => (
               <option key={year} value={year}>
@@ -112,46 +106,38 @@ const Body = ({ onMainClick, allgames }: BodyProps) => {
           </select>
         </div>
       )}
+      {loading ? <div className="flex justify-center items-center"><BounceLoader color="red" /></div> :
 
-
-
-{loading ? <div className="flex justify-center items-center"><BounceLoader color="red"/></div> : 
-
-  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 mt-4 gap-3">
-    {gamesToShow.length === 0
-      ? Array.from({ length: 12 }).map((_, i) => (
-          <div
-            key={i}
-            className="relative bg-[#111111] w-full h-[300px] shadow-lg border overflow-hidden mt-1 rounded-xl"
-          >
-            <Skeleton className="w-full h-40 rounded-t-xl" />
-            <div className="p-2 space-y-2">
-              <Skeleton className="h-5 w-[70%] rounded" />
-              <div className="flex gap-5">
-                <Skeleton className="h-4 w-[50px] rounded" />
-                <Skeleton className="h-4 w-[70px] rounded" />
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 mt-4 gap-3">
+          {gamesToShow.length === 0
+            ? Array.from({ length: 12 }).map((_, i) => (
+              <div
+                key={i}
+                className="relative border-black border w-full h-[300px] shadow-lg  overflow-hidden mt-1 rounded-xl"
+              >
+                <Skeleton className="w-full h-40 border-white border rounded-t-xl" />
+                <div className="p-2 space-y-2">
+                  <Skeleton className="h-5 w-[70%] border-white border rounded" />
+                  <div className="flex gap-5">
+                    <Skeleton className="h-4 w-[50px] border-white border rounded" />
+                    <Skeleton className="h-4 w-[70px] border-white border rounded" />
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        ))
-      : gamesToShow.map((game) => (
-          <GameCard
-            id={game.id}
-            bgImage={game.background_image}
-            title={game.name}
-            rating={game.rating}
-            released={game.released}
-            genres={game.genres || []}
-            platforms={game.platforms || []}
-          />
-        ))}
-  </div>
-
-}
-
-
-
-      
+            ))
+            : gamesToShow.map((game) => (
+              <GameCard
+                id={game.id}
+                bgImage={game.background_image}
+                title={game.name}
+                rating={game.rating}
+                released={game.released}
+                genres={game.genres || []}
+                platforms={game.platforms || []}
+              />
+            ))}
+        </div>
+      }
     </>
   );
 };

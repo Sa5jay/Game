@@ -4,14 +4,14 @@ interface Props {
   title: string;
   image: string;
   slug: string | number;
-  type: "tags" | "genres" | "platforms" | "stores";
+  type: "tags" | "genres" | "platforms" | "stores" | "developers";
 }
 
 const Card = ({ title, image, slug, type }: Props) => {
   return (
     <Link to={`/${type}/${slug}`}>
       <div 
-        className="relative hover:scale-95 border hover:border-[#E50914] hover:shadow-[#E50914] transform transition-transform duration-200 w-full h-40 sm:h-52 md:h-56 text-gray-50 rounded-lg shadow-lg overflow-hidden"
+        className="relative hover:scale-95 border border-[#111] transform transition-transform duration-200 w-full h-40 sm:h-52 md:h-56 text-white rounded-lg shadow-lg overflow-hidden"
         style={{
           backgroundImage: `url(${image})`,
           backgroundSize: "cover",

@@ -89,7 +89,7 @@ const GameDetails = () => {
   }, [id]);
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen text-white">
       <Sidebar />
       <div className="md:ml-67  md:pt-4 px-2 sm:px-4 ">
         <div className="mb-3">
@@ -97,23 +97,23 @@ const GameDetails = () => {
         </div>
         {loading ? (
           <div className="flex justify-center items-center h-screen">
-            <BounceLoader color="#ffffff" />
+            <BounceLoader color="black" />
           </div>
         ) : (
           <div>
-            {/* Banner */}
+            
             <div
-              className="relative w-full h-56 sm:h-80 md:h-[450px] bg-cover shadow-md shadow-gray-800 rounded-lg overflow-hidden flex items-center justify-start"
+              className="relative w-full h-56 sm:h-80 md:h-[450px] bg-cover border border-[#111111] rounded-lg overflow-hidden flex items-center justify-start"
               style={{ backgroundImage: `url(${gameDetails?.background_image})` }}
             >
               <div className="absolute inset-0 bg-black/70"></div>
-              <h1 className="relative z-10 text-2xl sm:text-3xl md:text-[40px] font-bold text-white px-4 sm:px-6">
+              <h1 className="relative z-10 text-2xl sm:text-3xl md:text-[40px] font-bold  px-4 sm:px-6">
                 {gameDetails?.name}
               </h1>
             </div>
 
             {/* Game Info */}
-            <div className="bg-gray-800/70 mt-5 p-4 sm:p-8 rounded-2xl shadow-lg text-white">
+            <div className="border border-[#111111] mt-5 p-4 sm:p-8 rounded-2xl shadow-lg ">
               <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Game Info</h1>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
                 <p className="text-base sm:text-lg">
@@ -149,14 +149,14 @@ const GameDetails = () => {
             </div>
 
             {/* About */}
-            <div className="text-white w-full mt-6">
+            <div className=" w-full mt-6">
               <h2 className="font-bold text-xl sm:text-2xl">About the game:</h2>
               <p className="mt-3 sm:mt-5 text-base sm:text-lg">{gameDetails?.description_raw}</p>
             </div>
 
             {/* Screenshots */}
-            <div className="text-white text-xl sm:text-2xl mt-6">
-              <h2>Screenshots:</h2>
+            <div className="text-xl sm:text-3xl mt-6">
+              <h2 className="font-bold">Screenshots:</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 mt-4 gap-3 sm:gap-5">
                 {screenShots.map((s) => (
                   <img
@@ -170,8 +170,8 @@ const GameDetails = () => {
             </div>
 
             {/* Game series */}
-            <div className="text-white text-xl sm:text-2xl mt-6">
-              <h2>Game Series:</h2>
+            <div className=" text-xl  sm:text-3xl mt-6">
+              <h2 className="font-bold">Game Series:</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 mt-4 gap-3 sm:gap-4">
                 {gameSeries.map((g) => (
                   <GameCard

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import GameCard from "./Cards/GameCard";
 import Sidebar from "./Sidebar";
+import Searchbar from "./Searchbar";
 
 interface Game {
   id: number;
@@ -64,17 +65,19 @@ const Description = () => {
   }, [slug, id, type]);
 
   return (
-    <div className="min-h-screen bg-black">
-      {/* Responsive Sidebar */}
+    <div className="min-h-screen ">
       <Sidebar />
-      <div className="md:ml-66 md:pt-6 px-2 md:px-6">
+      <div className="md:ml-66 md:pt-4 px-2 md:px-6">
+        <div className="mb-3">
+          <Searchbar/>
+        </div>
         {details && (
           <div
             style={{ backgroundImage: `url(${details.image_background})` }}
             className="bg-cover bg-center rounded-lg mb-6 shadow-lg"
           >
             <div className="inset-0 overflow-hidden rounded-lg bg-black/80 p-4 md:p-6">
-              <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-amber-200 mb-2">
+              <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#E50914] mb-2">
                 {details.name}
               </h1>
               <p className="text-white text-sm sm:text-base md:text-lg mb-4">

@@ -29,14 +29,14 @@ const Platforms = () => {
     fetchplatforms();
   }, []);
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen ">
       {/* Responsive Sidebar */}
       <Sidebar />
       <div className="md:ml-66  md:pt-6 px-2 md:px-6">
         <div className="mb-2">
           <Searchbar/>
         </div>
-        <h1 className="text-amber-200 text-3xl md:text-5xl mb-4 font-bold">Platforms</h1>
+        <h1 className="text-[#E50914] text-3xl md:text-5xl mb-4 font-bold">Platforms</h1>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {platforms.map((platform) => (    
             <Card slug={platform.id}  title={platform.name}  type="platforms"  image={platform.image_background}/> 

@@ -15,11 +15,11 @@ const Genres = () => {
   const [genres, setGenres] = useState<Props[]>([]);
   const [loading, setLoading] = React.useState(false);
 
-  const fetchgenres = async () => {
+  const fetchgenres = async ( ) => {
     if(loading) return;
     setLoading(true);
     const res = await fetch(
-      `https://api.rawg.io/api/genres?key=${import.meta.env.VITE_API_KEY}`
+      `https://api.rawg.io/api/genres?key=${import.meta.env.VITE_API_KEY}&page_size=40`
     );
     const data = await res.json();
     setGenres(data.results);
@@ -31,13 +31,13 @@ const Genres = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen ">
       <Sidebar />
       <div className="md:ml-66  md:pt-6 px-2 md:px-6">
         <div className='mb-2'>
           <Searchbar/>
         </div>
-        <h1 className="font-bold text-3xl md:text-6xl text-amber-200 mb-4">
+        <h1 className="font-bold text-3xl md:text-6xl text-[#E50914] mb-4">
           Genres
         </h1>
         <div className="grid grid-cols-2  sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4">

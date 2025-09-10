@@ -28,14 +28,14 @@ const Stores = () => {
     fetchstores();
   }, []);
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen ">
       {/* Responsive Sidebar */}
       <Sidebar/>
       <div className="md:ml-66 md:pt-6 px-2 md:px-6">
         <div className='mb-2'>
           <Searchbar/>
         </div>
-        <h1 className="font-bold text-3xl md:text-6xl text-amber-200 mb-4">
+        <h1 className="font-bold text-3xl md:text-6xl text-[#E50914] mb-4">
           Stores
         </h1>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4">
