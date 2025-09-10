@@ -5,7 +5,6 @@ import { SiXdadevelopers } from "react-icons/si";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { FaGoogle } from "react-icons/fa";
 
 const links = [
   { name: "Home", path: "/", icon: <FaHome /> },
