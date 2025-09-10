@@ -69,7 +69,7 @@ const Home = () => {
         {/* Upcoming Games Section */}
         <div className="mt-2">
           <div className="flex items-center flex-wrap gap-2">
-            <h1 className="text-[#E50914] text-2xl md:text-4xl font-bold mb-2">
+            <h1 className="text-[#E50914] text-xl md:text-3xl font-semibold mb-2">
               Upcoming Games
             </h1>
           </div>

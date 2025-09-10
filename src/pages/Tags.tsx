@@ -56,7 +56,7 @@ const Tags = () => {
         <div className="mb-2">
           <Searchbar />
         </div>
-        <h1 className="font-bold text-3xl md:text-5xl text-[#E50914] mb-4">
+        <h1 className="font-bold text-2xl md:text-3xl text-[#E50914] mb-4">
           Tags
         </h1>
 
@@ -67,7 +67,7 @@ const Tags = () => {
           </div>
         ) : (
           <>
-            {/* Tags Grid */}
+
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {tags.map((tag) => (
                 <Card
