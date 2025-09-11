@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Sidebar from "./Sidebar";
-import GameCard from "./Cards/GameCard";
+import Sidebar from "@/components/Sidebar";
+import GameCard from "@/components/Cards/GameCard";
 import { BounceLoader } from "react-spinners";
-import Searchbar from "./Searchbar";
+import Searchbar from "@/components/Searchbar";
 
 interface GameDetailsProps {
   id: number;
@@ -117,7 +117,7 @@ const GameDetails = () => {
               <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Game Info</h1>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
                 <p className="text-base sm:text-lg">
-                  <span className="font-semibold">Average Playtime:</span> {gameDetails?.playtime}h
+                  <span className="font-semibold">Average Playtime:</span> {gameDetails?.playtime ? `${gameDetails.playtime}h` : "not found"}
                 </p>
                 <p className="text-base sm:text-lg">
                   <span className="font-semibold">Developers:</span>{" "}
@@ -131,7 +131,7 @@ const GameDetails = () => {
                   {gameDetails?.publishers.map((p) => p.name).join(", ")}
                 </p>
                 <p className="text-base sm:text-lg">
-                  <span className="font-semibold">Released:</span> {gameDetails?.released}
+                  <span className="font-semibold">Released:</span> {gameDetails?.released ? gameDetails.released : "Unknown"}
                 </p>
                 <p className="text-base sm:text-lg">
                   <span className="font-semibold">Genres:</span>{" "}
@@ -151,7 +151,7 @@ const GameDetails = () => {
             {/* About */}
             <div className=" w-full mt-6">
               <h2 className="font-bold text-xl sm:text-2xl">About the game:</h2>
-              <p className="mt-3 sm:mt-5 text-base sm:text-lg">{gameDetails?.description_raw}</p>
+              <p className="mt-3 sm:mt-5 text-base sm:text-md">{gameDetails?.description_raw}</p>
             </div>
 
             {/* Screenshots */}
@@ -170,8 +170,8 @@ const GameDetails = () => {
             </div>
 
             {/* Game series */}
-            <div className=" text-xl  sm:text-3xl mt-6">
-              <h2 className="font-bold">Game Series:</h2>
+            <div className="  mt-6">
+              <h2 className="font-bold text-xl  sm:text-3xl">Game Series:</h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 mt-4 gap-3 sm:gap-4">
                 {gameSeries.map((g) => (
                   <GameCard

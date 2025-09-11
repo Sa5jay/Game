@@ -15,16 +15,17 @@ interface Props {
 const GameCard = ({ bgImage, title, id, rating, released, genres,platforms }: Props) => {
   return (
     <div className=" text-white w-full h-full border border-[#111111] rounded-lg   overflow-hidden   transition-all duration-300">
-
+<Link to={`/game/${id}`} state={{ released }}>
       <img
         src={bgImage}
         alt={title}
         className="w-full h-40  object-cover"
         loading="lazy"
 />
+</Link>
 <div className="p-3">
-  <Link to={`/game/${id}`}>
-    <h1 className=" text-lg font-bold truncate">{title}</h1>
+  <Link to={`/game/${id}`} state={{ released }}>
+    <h1 className=" text-md font-bold line-clamp-2">{title}</h1>
   </Link>
 
   {(rating || released) && (

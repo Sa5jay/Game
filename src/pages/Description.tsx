@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import GameCard from "./Cards/GameCard";
-import Sidebar from "./Sidebar";
-import Searchbar from "./Searchbar";
+import GameCard from "../components/Cards/GameCard";
+import Sidebar from "../components/Sidebar";
+import Searchbar from "../components/Searchbar";
 
 interface Game {
   id: number;

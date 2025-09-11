@@ -31,23 +31,25 @@ const Body = ({ onMainClick, allgames }: BodyProps) => {
   }, [allgames, activeTab]);
 
   const fetchBestOfYear = async (year: number) => {
+    setActiveTab("best");
     setLoading(true);
     const res = await fetch(
       `https://api.rawg.io/api/games?key=${import.meta.env.VITE_API_KEY}&dates=${year}-01-01,${year}-12-31&ordering=-rating&page_size=40`
     );
     const data = await res.json();
-    setActiveTab("best");
+    
     setGamesToShow(data.results);
     setLoading(false);
   };
 
   const fetchAllTimeTop = async () => {
+    setActiveTab("alltime");
     setLoading(true);
     const res = await fetch(
       `https://api.rawg.io/api/games?key=${import.meta.env.VITE_API_KEY}&ordering=-rating&page_size=40`
     );
     const data = await res.json();
-    setActiveTab("alltime");
+    
     setGamesToShow(data.results);
     setLoading(false);
   };
@@ -106,7 +108,7 @@ const Body = ({ onMainClick, allgames }: BodyProps) => {
           </select>
         </div>
       )}
-      {loading ? <div className="flex justify-center items-center"><BounceLoader color="red" /></div> :
+      {loading ? <div className="flex justify-center mt-10 items-center"><BounceLoader color="red" /></div> :
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 mt-4 gap-3">
           {gamesToShow.length === 0

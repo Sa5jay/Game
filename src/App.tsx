@@ -4,17 +4,21 @@ import Tags from './pages/Tags'
 import Genres from './pages/Genres'
 import Stores from './pages/Stores'
 import Platforms from './pages/Platforms'
-import Description from './components/Description'
-import GameDetails from './components/GameDetails'
+import Description from './pages/Description'
+import GameDetails from './pages/GameDetails'
 import Developers from './pages/Developers'
 import SearchResults from './pages/SerachResults'
+import Sidebar from './components/Sidebar'
+import ScrollToTop from './components/ScrollToTop'
 
 const App = () => {
   return (
     <Router>
       <div className='min-h-screen p-1 bg-black'>
+        <ScrollToTop/>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Sidebar />}/>
+          <Route index element={<Home />} />
           <Route path="/game/:id" element={<GameDetails />} />
           <Route path="/tags" element={<Tags />} />
           <Route path="/genres" element={<Genres />} />
