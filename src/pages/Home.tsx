@@ -64,12 +64,14 @@ const Home = () => {
     <div className="min-h-screen">
       <SideBar />
       <div className="md:ml-70 md:pt-4 px-2 md:px-4">
-        <Searchbar />
+        <div className="hidden md:block">
+          <Searchbar />
+        </div>
 
         {/* Upcoming Games Section */}
-        <div className="mt-2">
-          <div className="flex items-center flex-wrap gap-2">
-            <h1 className="text-[#E50914] text-xl md:text-3xl font-semibold mb-2">
+        <div className="md:mt-2 mt-6">
+          <div className="flex items-center  flex-wrap gap-2">
+            <h1 className="text-[#E50914] text-lg md:text-3xl font-semibold mb-2">
               Upcoming Games
             </h1>
           </div>

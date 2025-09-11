@@ -123,19 +123,19 @@ const Searchbar = () => {
   };
 
   return (
-    <div className="relative w-full" ref={wrapperRef}>
-      <form
-        onSubmit={handleSubmit}
-        className="flex border text-white border-[#111111] rounded-lg p-2 mt-2 md:mt-0 "
-      >
-        <Search className="w-8 h-8 mt-1 flex-shrink-0" color="#E50914" />
-        <input
-          placeholder=" Search games, genres, platforms..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          className="w-full px-3  outline-none bg-transparent"
-        />
-      </form>
+    <div className="w-full relative" ref={wrapperRef}>
+  <form
+    onSubmit={handleSubmit}
+    className="flex items-center border text-white border-[#111111] rounded-lg px-2 py-1 md:px-4 md:py-3 bg-black"
+  >
+    <Search className="w-5 h-5 md:w-8 md:h-8 flex-shrink-0" color="#E50914" />
+    <input
+      placeholder="Search..."
+      value={query}
+      onChange={(e) => setQuery(e.target.value)}
+      className="w-full px-2 text-sm md:text-base outline-none bg-transparent"
+    />
+  </form>
 
       {showDropdown && results.length > 0 && (
         <div className="absolute left-0 right-0 bg-[#111] border border-gray-600 rounded-lg mt-1 shadow-lg z-50 max-h-80 overflow-y-auto">

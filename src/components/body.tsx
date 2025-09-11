@@ -68,7 +68,7 @@ const Body = ({ onMainClick, allgames }: BodyProps) => {
   const years = Array.from({ length: 20 }, (_, i) => new Date().getFullYear() - i);
   return (
     <>
-      <div className="flex text-white  text-md gap-5 w-full font-semibold justify-start items-center">
+      <div className="flex text-white  text-sm gap-5 w-full font-semibold justify-start items-center">
         <button
           onClick={onMainClickHandler}
           className={`  hover:cursor-pointer 
