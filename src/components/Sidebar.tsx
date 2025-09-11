@@ -27,7 +27,7 @@ const Sidebar = () => {
       <div className="hidden md:flex fixed left-0 top-0 m-4 text-white border border-[#111111] rounded-lg min-h-screen w-64 p-4 flex-col z-40">
         <Link to={"/"}>
           <h1 className="flex justify-center items-center font-bold m-2 mb-8 p-4 border-t border-b text-[#E50914] border-white md:text-4xl">
-            GameZone
+            GameAtlas
           </h1>
         </Link>
         <div className="flex-1 font-bold text-2xl">
