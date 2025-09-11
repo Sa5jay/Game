@@ -55,7 +55,7 @@ const Sidebar = () => {
         {/* Header */}
         <header className="fixed top-0 w-full px-3 py-2 border-b border-gray-800 bg-black flex items-center justify-between z-40">
           <Link to="/" className="flex-shrink-0">
-            <div className="text-[#E50914] text-xl font-extrabold">
+            <div className="text-[#E50914] text-2xl font-extrabold">
               GameAtlas
             </div>
           </Link>
@@ -70,7 +70,7 @@ const Sidebar = () => {
 
         {/* Searchbar dropdown */}
         <div
-          className={`fixed top-12 left-0 right-0 bg-black   px-3 py-2 z-30 transition-all duration-300 ${
+          className={`fixed top-12 left-0 right-0 bg-black  transition-all duration-300 ${
             showSearch ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
           }`}
         >

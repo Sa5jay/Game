@@ -126,7 +126,7 @@ const Searchbar = () => {
     <div className="w-full relative" ref={wrapperRef}>
   <form
     onSubmit={handleSubmit}
-    className="flex items-center border text-white border-[#111111] rounded-lg px-2 py-1 md:px-4 md:py-3 bg-black"
+    className="flex items-center border text-white border-[#111111] rounded-lg px-2 py-5 md:px-4 md:py-3 bg-black"
   >
     <Search className="w-5 h-5 md:w-8 md:h-8 flex-shrink-0" color="#E50914" />
     <input
