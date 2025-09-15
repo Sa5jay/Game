@@ -36,7 +36,7 @@ const Platforms = () => {
         <div className="mb-2 hidden md:block">
           <Searchbar/>
         </div>
-        <h1 className="text-[#E50914] text-3xl md:text-5xl mb-4 font-bold">Platforms</h1>
+        <h1 className="font-bold text-2xl md:text-3xl text-[#E50914] mb-4">Platforms</h1>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {platforms.map((platform) => (    
             <Card slug={platform.id}  title={platform.name}  type="platforms"  image={platform.image_background}/> 
