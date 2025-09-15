@@ -92,7 +92,7 @@ const GameDetails = () => {
     <div className="min-h-screen text-white">
       <Sidebar />
       <div className="md:ml-67  md:pt-4 px-2 sm:px-4 ">
-        <div className="mb-3">
+        <div className="mb-3 hidden md:block">
           <Searchbar/>
         </div>
         {loading ? (

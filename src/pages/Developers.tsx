@@ -34,7 +34,7 @@ const Developers = () => {
     <div className="min-h-screen ">
       <Sidebar />
       <div className="md:ml-66  md:pt-6 px-2 md:px-6">
-        <div className='mb-2'>
+        <div className='mb-2 hidden md:block'>
           <Searchbar/>
         </div>
         <h1 className="font-bold text-3xl md:text-6xl text-[#E50914] mb-4">

@@ -68,7 +68,7 @@ const Description = () => {
     <div className="min-h-screen ">
       <Sidebar />
       <div className="md:ml-66 md:pt-4 px-2 md:px-6">
-        <div className="mb-3">
+        <div className="mb-3 hidden md:block">
           <Searchbar/>
         </div>
         {details && (

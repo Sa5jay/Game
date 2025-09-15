@@ -33,7 +33,7 @@ const Platforms = () => {
       {/* Responsive Sidebar */}
       <Sidebar />
       <div className="md:ml-66  md:pt-6 px-2 md:px-6">
-        <div className="mb-2">
+        <div className="mb-2 hidden md:block">
           <Searchbar/>
         </div>
         <h1 className="text-[#E50914] text-3xl md:text-5xl mb-4 font-bold">Platforms</h1>
