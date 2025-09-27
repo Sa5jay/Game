@@ -18,8 +18,8 @@ const Card = ({ title, image, slug, type }: Props) => {
       backgroundPosition: "center",
     }}
   >
-    <div className="absolute inset-0 bg-white/50 dark:bg-black/70 flex flex-col justify-center items-center p-4">
-      <h2 className="text-lg sm:text-xl md:text-xl font-bold text-center text-black dark:text-white">
+    <div className="absolute inset-0 bg-black/70  flex flex-col justify-center items-center ">
+      <h2 className="text-lg sm:text-xl md:text-xl font-bold text-center  text-white ">
         {title}
       </h2>
     </div>

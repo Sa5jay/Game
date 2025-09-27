@@ -20,7 +20,7 @@ const GameCard = ({ bgImage, title, id, rating, released, genres,platforms }: Pr
   </Link>
   <div className="p-3">
     <Link to={`/game/${id}`} state={{ released }}>
-      <h1 className="text-md font-bold line-clamp-2">{title}</h1>
+      <h1 className="text-md font-bold hover:text-[#E50914] line-clamp-2">{title}</h1>
     </Link>
 
     {(rating || released) && (

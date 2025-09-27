@@ -95,7 +95,7 @@ const Description = () => {
         <h1 className="text-black dark:text-white mb-3 font-bold text-xl sm:text-2xl md:text-3xl">
           Related games :
         </h1>
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-2">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 mt-2">
           {games.map((game) => (
             <GameCard
               key={game.id}
