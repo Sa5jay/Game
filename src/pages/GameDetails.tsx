@@ -4,6 +4,7 @@ import Sidebar from "@/components/Sidebar";
 import GameCard from "@/components/Cards/GameCard";
 import { BounceLoader } from "react-spinners";
 import Searchbar from "@/components/Searchbar";
+import ThemeToggle from "@/components/ThemeToggle";
 
 interface GameDetailsProps {
   id: number;
@@ -93,7 +94,10 @@ const GameDetails = () => {
   <Sidebar />
   <div className="md:ml-67 md:pt-4 px-2 sm:px-4">
     <div className="mb-3 hidden md:block">
-      <Searchbar />
+      <div className="flex gap-5 items-center">
+            <Searchbar />
+          <ThemeToggle />
+          </div>
     </div>
 
     {loading ? (

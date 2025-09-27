@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import Card from "@/components/Cards/Card";
 import { BounceLoader } from "react-spinners";
 import Searchbar from "@/components/Searchbar";
+import ThemeToggle from '@/components/ThemeToggle';
 
 interface Props{
   id: number;
@@ -34,7 +35,10 @@ const Platforms = () => {
   <Sidebar />
   <div className="md:ml-66 md:pt-6 px-2 md:px-6">
     <div className="mb-2 hidden md:block">
-      <Searchbar />
+      <div className="flex gap-5 items-center">
+            <Searchbar />
+          <ThemeToggle />
+          </div>
     </div>
 
     <h1 className="font-bold text-2xl md:text-3xl text-[#E50914] mb-4">

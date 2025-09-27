@@ -3,6 +3,7 @@ import { useParams, useLocation } from "react-router-dom";
 import GameCard from "../components/Cards/GameCard";
 import Sidebar from "../components/Sidebar";
 import Searchbar from "../components/Searchbar";
+import ThemeToggle from "@/components/ThemeToggle";
 
 interface Game {
   id: number;
@@ -68,8 +69,11 @@ const Description = () => {
     <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-colors">
       <Sidebar />
       <div className="md:ml-66 md:pt-4 px-2 md:px-6">
-        <div className="mb-3 hidden md:block">
-          <Searchbar />
+        <div className="mb-3  hidden md:block">
+          <div className="flex gap-5 items-center">
+            <Searchbar />
+          <ThemeToggle />
+          </div>
         </div>
 
         {details && (

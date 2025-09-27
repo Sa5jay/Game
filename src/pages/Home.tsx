@@ -4,8 +4,8 @@ import Searchbar from "@/components/Searchbar";
 import Body from "@/components/body";
 import Upcoming from "@/components/Cards/UpcomingCard";
 import { Skeleton } from "@/components/ui/skeleton";
-
-
+import ThemeToggle
+ from "@/components/ThemeToggle";
 interface Game {
   id: number;
   name: string;
@@ -67,7 +67,10 @@ const Home = () => {
   <SideBar />
   <div className="md:ml-70 md:pt-4 px-2 md:px-4">
     <div className="hidden md:block">
-      <Searchbar />
+      <div className="flex gap-5 items-center">
+            <Searchbar />
+          <ThemeToggle />
+          </div>
     </div>
 
     {/* Upcoming Games Section */}

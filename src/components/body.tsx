@@ -74,7 +74,7 @@ const Body = ({ onMainClick, allgames }: BodyProps) => {
     className={`hover:cursor-pointer ${
       activeTab === "main"
         ? "text-[#E50914]"
-        : "text-white dark:text-black hover:text-gray-400 dark:hover:text-gray-600"
+        : "text-black dark:text-white hover:text-gray-400 dark:hover:text-gray-600"
     }`}
   >
     Main
@@ -85,7 +85,7 @@ const Body = ({ onMainClick, allgames }: BodyProps) => {
     className={`hover:cursor-pointer ${
       activeTab === "best"
         ? "text-[#E50914]"
-        : "text-white dark:text-black hover:text-gray-400 dark:hover:text-gray-600"
+        : "text-black dark:text-white hover:text-gray-400 dark:hover:text-gray-600"
     }`}
   >
     Best of the Year
@@ -96,7 +96,7 @@ const Body = ({ onMainClick, allgames }: BodyProps) => {
     className={`hover:cursor-pointer ${
       activeTab === "alltime"
         ? "text-[#E50914]"
-        : "text-white dark:text-black hover:text-gray-400 dark:hover:text-gray-600"
+        : "text-black dark:text-white hover:text-gray-400 dark:hover:text-gray-600"
     }`}
   >
     All time top
