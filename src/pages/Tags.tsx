@@ -49,53 +49,58 @@ const Tags = () => {
   };
 
   return (
-    <div className="min-h-screen">
-      {/* Responsive Sidebar */}
-      <Sidebar />
-      <div className="md:ml-66 md:pt-6 px-2 md:px-6">
-        <div className="mb-2 hidden md:block">
-          <Searchbar />
-        </div>
-        <h1 className="font-bold text-2xl md:text-3xl text-[#E50914] mb-4">
-          Tags
-        </h1>
+    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-colors">
+  {/* Responsive Sidebar */}
+  <Sidebar />
+  <div className="md:ml-66 md:pt-6 px-2 md:px-6">
+    <div className="mb-2 hidden md:block">
+      <Searchbar />
+    </div>
 
-        {/* Loader only for initial fetch */}
-        {loading && tags.length === 0 ? (
-          <div className="flex mt-5 justify-center items-center">
-            <BounceLoader color="red" />
+    <h1 className="font-bold text-2xl md:text-3xl text-[#E50914] mb-4">
+      Tags
+    </h1>
+
+    {/* Loader only for initial fetch */}
+    {loading && tags.length === 0 ? (
+      <div className="flex mt-5 justify-center items-center">
+        <BounceLoader color="#E50914" />
+      </div>
+    ) : (
+      <>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {tags.map((tag) => (
+            <Card
+              key={tag.id}
+              title={tag.name}
+              type="tags"
+              slug={tag.slug}
+              image={tag.image_background}
+            />
+          ))}
+        </div>
+
+        {/* Load More button only after first page has loaded */}
+        {hasMore && tags.length > 0 ? (
+          <div className="flex justify-center mt-6">
+            <button
+              onClick={handleLoadMore}
+              disabled={loading}
+              className="py-2 w-full bg-[#E50914] text-lg text-white font-semibold rounded-lg shadow hover:bg-[#b20710] disabled:opacity-50"
+            >
+              {loading ? "Loading..." : "Load More"}
+            </button>
           </div>
         ) : (
-          <>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {tags.map((tag) => (
-                <Card
-                  key={tag.id}
-                  title={tag.name}
-                  type="tags"
-                  slug={tag.slug}
-                  image={tag.image_background}
-                />
-              ))}
-            </div>
-
-            {/* Load More button only after first page has loaded */}
-            {hasMore && tags.length > 0 ? (
-              <div className="flex justify-center mt-6">
-                <button
-                  onClick={handleLoadMore}
-                  disabled={loading}
-                  className=" py-2 w-full bg-[#E50914] text-lg text-white font-semibold rounded-lg shadow hover:bg-[#b20710] disabled:opacity-50"
-                >
-                  {loading ? "Loading..." : "Load More"}
-                </button>
-              </div>
-            ): <p className="flex justify-center text-white">No more content..</p>}
-          </>
+          <p className="flex justify-center text-black dark:text-white mt-4">
+            No more content..
+          </p>
         )}
-      </div>
-    </div>
+      </>
+    )}
+  </div>
+</div>
+
   );
 };
 

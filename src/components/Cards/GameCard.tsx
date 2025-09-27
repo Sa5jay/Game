@@ -14,56 +14,46 @@ interface Props {
 
 const GameCard = ({ bgImage, title, id, rating, released, genres,platforms }: Props) => {
   return (
-    <div className=" text-white w-full h-full border border-[#111111] rounded-lg   overflow-hidden   transition-all duration-300">
-<Link to={`/game/${id}`} state={{ released }}>
-      <img
-        src={bgImage}
-        alt={title}
-        className="w-full h-40  object-cover"
-        loading="lazy"
-/>
-</Link>
-<div className="p-3">
+<div className="w-full h-full border border-black dark:border-white rounded-lg overflow-hidden bg-white dark:bg-black text-black dark:text-white transition-colors">
   <Link to={`/game/${id}`} state={{ released }}>
-    <h1 className=" text-md font-bold line-clamp-2">{title}</h1>
+    <img src={bgImage} alt={title} className="w-full h-40 object-cover" loading="lazy" />
   </Link>
+  <div className="p-3">
+    <Link to={`/game/${id}`} state={{ released }}>
+      <h1 className="text-md font-bold line-clamp-2">{title}</h1>
+    </Link>
 
-  {(rating || released) && (
-    <div className="flex justify-between text-sm  mt-1">
-      <span className="flex items-center gap-1">
-        <FaStar className="text-yellow-400" />
-        {rating.toFixed(1)}
-      </span>
-      <span>{released ? released.split("-")[0] : null}</span>
-    </div>
-  )}
+    {(rating || released) && (
+      <div className="flex justify-between text-sm mt-1">
+        <span className="flex items-center gap-1">
+          <FaStar className="text-yellow-400" />
+          {rating.toFixed(1)}
+        </span>
+        <span>{released ? released.split("-")[0] : null}</span>
+      </div>
+    )}
 
-  {genres && genres.length > 0 && (
-    <div className="flex flex-wrap gap-1 mt-2">
-      {genres.slice(0, 2).map((g) => (
-        <span
-          key={g.id}
-          className=" text-xs text-gray-400 px-1 py-1 rounded"
-        >
-          {g.name}
-        </span>
-      ))}
-    </div>
-  )}
-  {platforms && platforms.length > 0 && (
-    <div className="flex flex-wrap gap-1 mt-2">
-      {platforms.slice(0, 2).map((g) => (
-        <span
-          key={g.platform.id}
-          className="text-xs text-gray-400 px-1 py-1 rounded"
-        >
-          {g.platform.name}
-        </span>
-      ))}
-    </div>
-  )}
+    {genres && genres.length > 0 && (
+      <div className="flex flex-wrap gap-1 mt-2">
+        {genres.slice(0, 2).map((g) => (
+          <span key={g.id} className="text-xs text-gray-700 dark:text-gray-300 px-1 py-1 rounded">
+            {g.name}
+          </span>
+        ))}
+      </div>
+    )}
+    {platforms && platforms.length > 0 && (
+      <div className="flex flex-wrap gap-1 mt-2">
+        {platforms.slice(0, 2).map((g) => (
+          <span key={g.platform.id} className="text-xs text-gray-700 dark:text-gray-300 px-1 py-1 rounded">
+            {g.platform.name}
+          </span>
+        ))}
+      </div>
+    )}
+  </div>
 </div>
-    </div>
+
   );
 };
 

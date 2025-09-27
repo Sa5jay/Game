@@ -65,29 +65,33 @@ const Description = () => {
   }, [slug, id, type]);
 
   return (
-    <div className="min-h-screen ">
+    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-colors">
       <Sidebar />
       <div className="md:ml-66 md:pt-4 px-2 md:px-6">
         <div className="mb-3 hidden md:block">
-          <Searchbar/>
+          <Searchbar />
         </div>
+
         {details && (
           <div
             style={{ backgroundImage: `url(${details.image_background})` }}
             className="bg-cover bg-center rounded-lg mb-6 shadow-lg"
           >
-            <div className="inset-0 overflow-hidden rounded-lg bg-black/80 p-4 md:p-6">
+            <div className="inset-0 overflow-hidden rounded-lg bg-white/80 dark:bg-black/80 p-4 md:p-6 transition-colors">
               <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#E50914] mb-2">
                 {details.name}
               </h1>
-              <p className="text-white text-sm sm:text-base md:text-lg mb-4">
+              <p className="text-black dark:text-white text-sm sm:text-base md:text-lg mb-4">
                 {details.description.replace(/<[^>]+>/g, '')}
               </p>
             </div>
           </div>
         )}
-        <h1 className="text-white mb-3 font-bold text-xl sm:text-2xl md:text-3xl">Related games :</h1>
-        <div className="grid grid-cols-2  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-2">
+
+        <h1 className="text-black dark:text-white mb-3 font-bold text-xl sm:text-2xl md:text-3xl">
+          Related games :
+        </h1>
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-2">
           {games.map((game) => (
             <GameCard
               key={game.id}

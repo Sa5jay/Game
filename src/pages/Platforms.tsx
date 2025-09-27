@@ -29,26 +29,38 @@ const Platforms = () => {
     fetchplatforms();
   }, []);
   return (
-    <div className="min-h-screen ">
-      {/* Responsive Sidebar */}
-      <Sidebar />
-      <div className="md:ml-66  md:pt-6 px-2 md:px-6">
-        <div className="mb-2 hidden md:block">
-          <Searchbar/>
-        </div>
-        <h1 className="font-bold text-2xl md:text-3xl text-[#E50914] mb-4">Platforms</h1>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {platforms.map((platform) => (    
-            <Card slug={platform.id}  title={platform.name}  type="platforms"  image={platform.image_background}/> 
-          ))}
-        </div>
-        {loading && (
-          <div className="flex justify-center items-center mt-4">
-            <BounceLoader color="red"/>
-          </div>
-        )}
-      </div>
+    <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white transition-colors">
+  {/* Responsive Sidebar */}
+  <Sidebar />
+  <div className="md:ml-66 md:pt-6 px-2 md:px-6">
+    <div className="mb-2 hidden md:block">
+      <Searchbar />
     </div>
+
+    <h1 className="font-bold text-2xl md:text-3xl text-[#E50914] mb-4">
+      Platforms
+    </h1>
+
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {platforms.map((platform) => (
+        <Card
+          key={platform.id}
+          slug={platform.id}
+          title={platform.name}
+          type="platforms"
+          image={platform.image_background}
+        />
+      ))}
+    </div>
+
+    {loading && (
+      <div className="flex justify-center items-center mt-4">
+        <BounceLoader color="#E50914" />
+      </div>
+    )}
+  </div>
+</div>
+
   )
 }
 
