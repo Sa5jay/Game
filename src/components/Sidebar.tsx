@@ -25,7 +25,7 @@ const Sidebar = () => {
   return (
     <>
       {/* Desktop Sidebar */}
-      <div className="hidden md:flex fixed left-0 top-0 m-4 text-black dark:text-white border border-black dark:border-white rounded-lg min-h-screen w-64 p-4 flex-col z-40 bg-white dark:bg-black">
+  <div className="hidden md:flex fixed left-0 top-0 m-4 text-black dark:text-white border border-black dark:border-white rounded-lg min-h-screen w-64 p-4 flex-col z-40 bg-white dark:bg-black animate-slide-in-left">
         <Link to={"/"}>
           <h1 className="flex justify-center items-center font-bold m-2 mb-8 p-4 border-t border-b text-[#E50914] border-black dark:border-white md:text-4xl">
             GameAtlas
@@ -35,12 +35,12 @@ const Sidebar = () => {
         <div className="flex-1 font-bold text-2xl">
           {links.map((link) => {
             const isActive = location.pathname === link.path;
-            return (
+              return (
               <Link
                 key={link.name}
                 to={link.path}
-                className={`flex mb-4 items-center gap-3 font-bold 
-                  ${isActive ? "text-[#E50914] bg-gray-200 dark:bg-gray-800 p-2 rounded-lg" : "hover:text-gray-400 dark:hover:text-gray-300"}`}
+                className={`flex mb-4 items-center gap-3 font-bold transition-transform duration-150
+                  ${isActive ? "text-[#E50914] bg-gray-200 dark:bg-gray-800 p-2 rounded-lg" : "hover:text-gray-400 dark:hover:text-gray-300 hover:translate-x-1"}`}
               >
                 <span className="w-6 h-6 flex items-center justify-center">{link.icon}</span>
                 {link.name}

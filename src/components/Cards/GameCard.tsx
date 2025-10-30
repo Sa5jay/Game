@@ -14,9 +14,9 @@ interface Props {
 
 const GameCard = ({ bgImage, title, id, rating, released, genres,platforms }: Props) => {
   return (
-<div className="w-full h-full border border-black dark:border-white rounded-lg overflow-hidden bg-white dark:bg-black text-black dark:text-white transition-colors">
+<div className="w-full h-full border border-black dark:border-white rounded-lg overflow-hidden bg-white dark:bg-black text-black dark:text-white transition-colors opacity-0 animate-fade-up hover:shadow-lg hover:scale-[1.03] transform-gpu transition-transform duration-200 ease-out">
   <Link to={`/game/${id}`} state={{ released }}>
-    <img src={bgImage} alt={title} className="w-full h-40 object-cover" loading="lazy" />
+    <img src={bgImage} alt={title} className="w-full h-40 object-cover transition-transform duration-200" loading="lazy" />
   </Link>
   <div className="p-3">
     <Link to={`/game/${id}`} state={{ released }}>

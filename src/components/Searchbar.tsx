@@ -9,6 +9,17 @@ interface ResultItem {
   type: "game" | "genre" | "platform" | "developer" | "store" | "tag";
 }
 
+interface ApiResponse<T> {
+  results?: T[];
+}
+
+interface ApiResult {
+  id: number;
+  name: string;
+  background_image?: string;
+  image_background?: string;
+}
+
 const Searchbar = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<ResultItem[]>([]);
@@ -23,46 +34,50 @@ const Searchbar = () => {
           const endpoints = [
             {
               url: `https://api.rawg.io/api/games?key=${import.meta.env.VITE_API_KEY}&search=${query}&page_size=5`,
-              type: "game",
+              type: "game" as ResultItem["type"],
             },
             {
               url: `https://api.rawg.io/api/genres?key=${import.meta.env.VITE_API_KEY}&search=${query}`,
-              type: "genre",
+              type: "genre" as ResultItem["type"],
             },
             {
               url: `https://api.rawg.io/api/platforms?key=${import.meta.env.VITE_API_KEY}&search=${query}`,
-              type: "platform",
+              type: "platform" as ResultItem["type"],
             },
             {
               url: `https://api.rawg.io/api/developers?key=${import.meta.env.VITE_API_KEY}&search=${query}`,
-              type: "developer",
+              type: "developer" as ResultItem["type"],
             },
             {
               url: `https://api.rawg.io/api/stores?key=${import.meta.env.VITE_API_KEY}&search=${query}`,
-              type: "store",
+              type: "store" as ResultItem["type"],
             },
             {
               url: `https://api.rawg.io/api/tags?key=${import.meta.env.VITE_API_KEY}&search=${query}`,
-              type: "tag",
+              type: "tag" as ResultItem["type"],
             },
           ];
 
+          // Fetch all endpoints simultaneously
           const responses = await Promise.all(
-            endpoints.map((e) => fetch(e.url).then((r) => r.json()))
+            endpoints.map(async (endpoint) => {
+              const res = await fetch(endpoint.url);
+              const data: ApiResponse<ApiResult> = await res.json();
+              return { data, type: endpoint.type };
+            })
           );
 
           const merged: ResultItem[] = [];
-          responses.forEach((res, idx) => {
-            if (res.results) {
-              res.results.slice(0, 5).forEach((item: any) => {
-                merged.push({
-                  id: item.id,
-                  name: item.name,
-                  image: item.background_image || item.image_background,
-                  type: endpoints[idx].type as ResultItem["type"],
-                });
+
+          responses.forEach(({ data, type }) => {
+            data.results?.slice(0, 5).forEach((item) => {
+              merged.push({
+                id: item.id,
+                name: item.name,
+                image: item.background_image || item.image_background,
+                type,
               });
-            }
+            });
           });
 
           setResults(merged);
@@ -84,11 +99,12 @@ const Searchbar = () => {
         setShowDropdown(false);
       }
     };
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (query.trim()) {
       navigate(`/search/${query}`);
@@ -113,7 +129,7 @@ const Searchbar = () => {
       <form
         onSubmit={handleSubmit}
         className="flex items-center border rounded-lg px-2 py-3 md:px-4 md:py-3
-                   bg-white dark:bg-black border-black dark:border-white text-black dark:text-white"
+                   bg-white dark:bg-black border-black dark:border-white text-black dark:text-white transition-shadow duration-150 focus-within:shadow-lg"
       >
         <Search className="w-5 h-5 md:w-8 md:h-8 flex-shrink-0 text-[#E50914]" />
         <input
@@ -126,11 +142,11 @@ const Searchbar = () => {
       </form>
 
       {showDropdown && results.length > 0 && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-black border border-black dark:border-white rounded-lg z-50 max-h-80 overflow-y-auto shadow-lg">
+        <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-black border border-black dark:border-white rounded-lg z-50 max-h-80 overflow-y-auto shadow-lg animate-fade-in">
           {results.map((item) => (
             <div
               key={`${item.type}-${item.id}`}
-              className="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-900 cursor-pointer"
+              className="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-900 cursor-pointer transition-transform duration-150 hover:translate-x-1"
               onClick={() => handleSelect(item)}
             >
               {item.image && (
@@ -145,7 +161,7 @@ const Searchbar = () => {
             </div>
           ))}
           <div
-            className="p-2 text-sm text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-900 cursor-pointer"
+            className="p-2 text-sm text-gray-400 hover:text-black dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-900 cursor-pointer transition-transform duration-150 hover:translate-x-1"
             onClick={() => {
               navigate(`/search/${query}`);
               setShowDropdown(false);
