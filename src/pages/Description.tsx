@@ -79,13 +79,13 @@ const Description = () => {
         {details && (
           <div
             style={{ backgroundImage: `url(${details.image_background})` }}
-            className="bg-cover bg-center rounded-lg mb-6 shadow-lg"
+            className="bg-cover bg-center border dark:border-white border-black rounded-lg mb-6 shadow-lg"
           >
             <div className="inset-0 overflow-hidden rounded-lg bg-white/80 dark:bg-black/80 p-4 md:p-6 transition-colors">
               <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold text-[#E50914] mb-2">
-                {details.name}
+                {details.name}:
               </h1>
-              <p className="text-black dark:text-white text-sm sm:text-base md:text-lg mb-4">
+              <p className="text-black dark:text-white font-semibold text-sm sm:text-base md:text-lg mb-4">
                 {details.description.replace(/<[^>]+>/g, '')}
               </p>
             </div>

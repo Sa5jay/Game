@@ -111,14 +111,14 @@ const GameDetails = () => {
           className="relative w-full h-56 sm:h-80 md:h-[450px] bg-cover border border-[#111111] rounded-lg overflow-hidden flex items-center justify-start"
           style={{ backgroundImage: `url(${gameDetails?.background_image})` }}
         >
-          <div className="absolute inset-0 bg-black/70 dark:bg-white/20 transition-colors"></div>
+          <div className="absolute inset-0 bg-black/20 dark:bg-white/20 transition-colors"></div>
           <h1 className="relative z-10 text-2xl sm:text-3xl md:text-[40px] font-bold px-4 sm:px-6 text-[#E50914]">
             {gameDetails?.name}
           </h1>
         </div>
 
         {/* Game Info */}
-        <div className="border border-[#111111] mt-5 p-4 sm:p-8 rounded-2xl shadow-lg bg-white dark:bg-black transition-colors">
+        <div className="dark:border-white border mt-5 p-4 sm:p-8 rounded-2xl shadow-lg bg-white border-black dark:bg-black transition-colors">
           <h1 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 text-[#E50914]">
             Game Info
           </h1>
